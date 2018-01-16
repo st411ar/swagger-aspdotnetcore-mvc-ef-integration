@@ -1,0 +1,1 @@
+dotnet run -p web-api-client-checker

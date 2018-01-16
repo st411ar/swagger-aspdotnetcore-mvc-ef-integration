@@ -1,0 +1,331 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Paper Library Web API",
+    "version" : "0.0.18",
+    "title" : "Paper Library"
+  },
+  "host" : "localhost",
+  "basePath" : "/paperlib",
+  "tags" : [ {
+    "name" : "users",
+    "description" : "Operations with users"
+  }, {
+    "name" : "books",
+    "description" : "Operations with books"
+  } ],
+  "schemes" : [ "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/users" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "Get all users",
+        "description" : "Operation for getting all users",
+        "operationId" : "getUsers",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/user"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "users" ],
+        "summary" : "Create new user",
+        "description" : "Operation for creating new user",
+        "operationId" : "createUser",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "description" : "A string represents user name",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "Get an user",
+        "description" : "Operation for getting an user by its id",
+        "operationId" : "getUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A string representing the id of an user",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/user"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "users" ],
+        "summary" : "Update an user",
+        "description" : "Operation for updating an user",
+        "operationId" : "updateUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A string representing the id of an user",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "A string represents user name",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "users" ],
+        "summary" : "Delete an user",
+        "description" : "Operation for deletting an user by its id",
+        "operationId" : "deleteUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A string representing the id of an user",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/books" : {
+      "get" : {
+        "tags" : [ "books" ],
+        "summary" : "Get all books",
+        "description" : "Operation for getting all books",
+        "operationId" : "getBooks",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/book"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "books" ],
+        "summary" : "Create new book",
+        "description" : "Operation for creating new book",
+        "operationId" : "createBook",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "description" : "A string represents book name",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ownerId",
+          "in" : "query",
+          "description" : "A string represents book owner id",
+          "required" : false,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/books/{id}" : {
+      "get" : {
+        "tags" : [ "books" ],
+        "summary" : "Get a book",
+        "description" : "Operation for getting book by its id",
+        "operationId" : "getBook",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A string representing the id of a book",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/book"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "books" ],
+        "summary" : "Update a book",
+        "description" : "Operation for updating a book",
+        "operationId" : "updateBook",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A string representing the id of a book",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "A string represents book name",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ownerId",
+          "in" : "query",
+          "description" : "A string represents book owner id",
+          "required" : false,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "books" ],
+        "summary" : "Delete a book",
+        "description" : "Operation for deletting a book by its id",
+        "operationId" : "deleteBook",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "A string representing the id of a book",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "user" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "name" : "name",
+        "id" : 0
+      }
+    },
+    "book" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "ownerId" : {
+          "type" : "integer"
+        }
+      },
+      "example" : {
+        "name" : "name",
+        "id" : 0,
+        "ownerId" : 6
+      }
+    }
+  },
+  "parameters" : {
+    "userId" : {
+      "name" : "id",
+      "in" : "path",
+      "description" : "A string representing the id of an user",
+      "required" : true,
+      "type" : "integer"
+    },
+    "userName" : {
+      "name" : "name",
+      "in" : "query",
+      "description" : "A string represents user name",
+      "required" : false,
+      "type" : "string"
+    },
+    "bookId" : {
+      "name" : "id",
+      "in" : "path",
+      "description" : "A string representing the id of a book",
+      "required" : true,
+      "type" : "integer"
+    },
+    "bookName" : {
+      "name" : "name",
+      "in" : "query",
+      "description" : "A string represents book name",
+      "required" : false,
+      "type" : "string"
+    },
+    "bookOwnerId" : {
+      "name" : "ownerId",
+      "in" : "query",
+      "description" : "A string represents book owner id",
+      "required" : false,
+      "type" : "integer"
+    }
+  }
+}
