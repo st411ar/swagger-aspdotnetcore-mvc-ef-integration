@@ -14,6 +14,7 @@ namespace paperlib.Controllers
     public class HomeController : Controller
     {
     	private static UsersApi usersApi = new UsersApi();
+    	private static BooksApi booksApi = new BooksApi();
 
         public IActionResult Index()
         {
@@ -38,6 +39,12 @@ namespace paperlib.Controllers
         {
             ViewData["Message"] = "List of all users";
             return View(usersApi.GetUsers());
+        }
+
+        public IActionResult Books()
+        {
+            ViewData["Message"] = "List of all books";
+            return View(booksApi.GetBooks());
         }
 
         public IActionResult Error()
