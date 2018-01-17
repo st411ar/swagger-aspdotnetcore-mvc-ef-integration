@@ -129,6 +129,9 @@ namespace IO.Swagger.Controllers
         	var user = context.Users
         			.Where(u => u.Id == id.Value)
         			.FirstOrDefault();
+			if (name != null) {
+				user.Name = name;
+			}
             context.SaveChanges();
             return new ObjectResult(true);
         }
