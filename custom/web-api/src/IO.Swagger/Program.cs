@@ -36,6 +36,7 @@ namespace IO.Swagger
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://+:4999" /*, "https://+:5001" */)
                 .Build();
 
         private static void initDbContext(IWebHost host) {
