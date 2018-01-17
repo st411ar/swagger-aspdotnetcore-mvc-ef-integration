@@ -27,7 +27,7 @@ Paper Library demonstrates integration of **swagger** with **asp.net core** + **
 ```
 git clone https://github.com/st411ar/swagger-aspdotnetcore-mvc-ef-integration.git
 cd swagger-aspdotnetcore-mvc-ef-integration
-build
+setup
 ```
 ## run web-api
 `run-web-api`
