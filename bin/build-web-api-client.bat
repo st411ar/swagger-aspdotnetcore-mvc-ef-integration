@@ -1,3 +1,5 @@
+rd /Q /S %client-name%
+
 java -jar %swagger-codegen-cli-jar% generate ^
 		-i %swagger-descriptor-path% ^
 		-l csharp ^
