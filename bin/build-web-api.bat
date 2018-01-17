@@ -1,3 +1,5 @@
+rd /Q /S %web-api-name%
+
 java -jar %swagger-codegen-cli-jar% generate ^
 		-i %swagger-descriptor-path% ^
 		-l aspnetcore ^
