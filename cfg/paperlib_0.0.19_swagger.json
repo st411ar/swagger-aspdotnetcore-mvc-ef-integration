@@ -1,12 +1,15 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Paper Library Web API",
-    "version" : "0.0.18",
-    "title" : "Paper Library"
+    "version" : "0.0.19",
+    "title" : "Paper Library Web API",
+    "description" : "Paper Library Web API demonstrates integration of swagger with asp.net core + mvc + entity framework"
   },
-  "host" : "localhost",
+  "host" : "localhost:4999",
   "basePath" : "/paperlib",
+  "schemes" : [ "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
   "tags" : [ {
     "name" : "users",
     "description" : "Operations with users"
@@ -14,9 +17,6 @@
     "name" : "books",
     "description" : "Operations with books"
   } ],
-  "schemes" : [ "http" ],
-  "consumes" : [ "application/json" ],
-  "produces" : [ "application/json" ],
   "paths" : {
     "/users" : {
       "get" : {
@@ -24,7 +24,6 @@
         "summary" : "Get all users",
         "description" : "Operation for getting all users",
         "operationId" : "getUsers",
-        "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -43,11 +42,7 @@
         "description" : "Operation for creating new user",
         "operationId" : "createUser",
         "parameters" : [ {
-          "name" : "name",
-          "in" : "query",
-          "description" : "A string represents user name",
-          "required" : false,
-          "type" : "string"
+          "$ref" : "#/parameters/userName"
         } ],
         "responses" : {
           "200" : {
@@ -66,11 +61,7 @@
         "description" : "Operation for getting an user by its id",
         "operationId" : "getUser",
         "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "A string representing the id of an user",
-          "required" : true,
-          "type" : "integer"
+          "$ref" : "#/parameters/userId"
         } ],
         "responses" : {
           "200" : {
@@ -87,17 +78,9 @@
         "description" : "Operation for updating an user",
         "operationId" : "updateUser",
         "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "A string representing the id of an user",
-          "required" : true,
-          "type" : "integer"
+          "$ref" : "#/parameters/userId"
         }, {
-          "name" : "name",
-          "in" : "query",
-          "description" : "A string represents user name",
-          "required" : false,
-          "type" : "string"
+          "$ref" : "#/parameters/userName"
         } ],
         "responses" : {
           "200" : {
@@ -114,11 +97,7 @@
         "description" : "Operation for deletting an user by its id",
         "operationId" : "deleteUser",
         "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "A string representing the id of an user",
-          "required" : true,
-          "type" : "integer"
+          "$ref" : "#/parameters/userId"
         } ],
         "responses" : {
           "200" : {
@@ -136,7 +115,6 @@
         "summary" : "Get all books",
         "description" : "Operation for getting all books",
         "operationId" : "getBooks",
-        "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -155,17 +133,9 @@
         "description" : "Operation for creating new book",
         "operationId" : "createBook",
         "parameters" : [ {
-          "name" : "name",
-          "in" : "query",
-          "description" : "A string represents book name",
-          "required" : false,
-          "type" : "string"
+          "$ref" : "#/parameters/bookName"
         }, {
-          "name" : "ownerId",
-          "in" : "query",
-          "description" : "A string represents book owner id",
-          "required" : false,
-          "type" : "integer"
+          "$ref" : "#/parameters/bookOwnerId"
         } ],
         "responses" : {
           "200" : {
@@ -181,14 +151,10 @@
       "get" : {
         "tags" : [ "books" ],
         "summary" : "Get a book",
-        "description" : "Operation for getting book by its id",
+        "description" : "Operation for getting a book by its id",
         "operationId" : "getBook",
         "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "A string representing the id of a book",
-          "required" : true,
-          "type" : "integer"
+          "$ref" : "#/parameters/bookId"
         } ],
         "responses" : {
           "200" : {
@@ -205,23 +171,11 @@
         "description" : "Operation for updating a book",
         "operationId" : "updateBook",
         "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "A string representing the id of a book",
-          "required" : true,
-          "type" : "integer"
+          "$ref" : "#/parameters/bookId"
         }, {
-          "name" : "name",
-          "in" : "query",
-          "description" : "A string represents book name",
-          "required" : false,
-          "type" : "string"
+          "$ref" : "#/parameters/bookName"
         }, {
-          "name" : "ownerId",
-          "in" : "query",
-          "description" : "A string represents book owner id",
-          "required" : false,
-          "type" : "integer"
+          "$ref" : "#/parameters/bookOwnerId"
         } ],
         "responses" : {
           "200" : {
@@ -238,11 +192,7 @@
         "description" : "Operation for deletting a book by its id",
         "operationId" : "deleteBook",
         "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "A string representing the id of a book",
-          "required" : true,
-          "type" : "integer"
+          "$ref" : "#/parameters/bookId"
         } ],
         "responses" : {
           "200" : {
@@ -255,6 +205,40 @@
       }
     }
   },
+  "parameters" : {
+    "userId" : {
+      "name" : "id",
+      "in" : "path",
+      "description" : "A string representing the id of an user",
+      "required" : true,
+      "type" : "integer"
+    },
+    "userName" : {
+      "in" : "query",
+      "name" : "name",
+      "description" : "A string represents user name",
+      "type" : "string"
+    },
+    "bookId" : {
+      "name" : "id",
+      "in" : "path",
+      "description" : "A string representing book id",
+      "required" : true,
+      "type" : "integer"
+    },
+    "bookName" : {
+      "in" : "query",
+      "name" : "name",
+      "description" : "A string represents book name",
+      "type" : "string"
+    },
+    "bookOwnerId" : {
+      "in" : "query",
+      "name" : "ownerId",
+      "description" : "A string represents book owner id",
+      "type" : "integer"
+    }
+  },
   "definitions" : {
     "user" : {
       "type" : "object",
@@ -265,10 +249,6 @@
         "name" : {
           "type" : "string"
         }
-      },
-      "example" : {
-        "name" : "name",
-        "id" : 0
       }
     },
     "book" : {
@@ -283,49 +263,7 @@
         "ownerId" : {
           "type" : "integer"
         }
-      },
-      "example" : {
-        "name" : "name",
-        "id" : 0,
-        "ownerId" : 6
       }
-    }
-  },
-  "parameters" : {
-    "userId" : {
-      "name" : "id",
-      "in" : "path",
-      "description" : "A string representing the id of an user",
-      "required" : true,
-      "type" : "integer"
-    },
-    "userName" : {
-      "name" : "name",
-      "in" : "query",
-      "description" : "A string represents user name",
-      "required" : false,
-      "type" : "string"
-    },
-    "bookId" : {
-      "name" : "id",
-      "in" : "path",
-      "description" : "A string representing the id of a book",
-      "required" : true,
-      "type" : "integer"
-    },
-    "bookName" : {
-      "name" : "name",
-      "in" : "query",
-      "description" : "A string represents book name",
-      "required" : false,
-      "type" : "string"
-    },
-    "bookOwnerId" : {
-      "name" : "ownerId",
-      "in" : "query",
-      "description" : "A string represents book owner id",
-      "required" : false,
-      "type" : "integer"
     }
   }
 }
