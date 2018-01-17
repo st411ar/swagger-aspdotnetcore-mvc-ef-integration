@@ -22,7 +22,7 @@ set client-name=web-api-client
 :: web-api-client-checker
 set checker-name=web-api-client-checker
 
-:: application
+:: web application
 set web-app-name=paperlib
 
 :: build all
