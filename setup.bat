@@ -22,12 +22,16 @@ set client-name=web-api-client
 :: web-api-client-checker
 set checker-name=web-api-client-checker
 
+:: web application
+set web-app-name=paperlib
+
 :: build all
 call %dir-bin%/deploy-db
 call %dir-bin%/build-swagger
 call %dir-bin%/build-web-api
 call %dir-bin%/build-web-api-client
 call %dir-bin%/build-web-api-client-checker
+call %dir-bin%/build-web-app
 
 :: project have been built
 set end=%time%

@@ -30,6 +30,14 @@ cd swagger-aspdotnetcore-mvc-ef-integration
 setup
 ```
 ## run web-api
-`run-web-api`
+```
+run-web-api
+```
 ## run web-api-client-checker
-`run-web-api-client-checker`
+```
+run-web-api-client-checker
+```
+## run web application
+```
+run-web-app
+```
