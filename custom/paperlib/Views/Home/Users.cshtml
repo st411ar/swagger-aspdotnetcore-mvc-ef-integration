@@ -1,0 +1,14 @@
+﻿@model IEnumerable<IO.Swagger.Model.User>
+
+@{
+    ViewData["Title"] = "Users";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<table class="table">
+	<tr><th>id</th><th>name</th></tr>
+	@foreach (var user in Model) {
+		<tr><td>@user.Id</td><td>@user.Name</td></tr>
+	}
+</table>
