@@ -26,8 +26,8 @@ set checker-name=web-api-client-checker
 set web-app-name=paperlib
 
 :: build all
-@rem call %dir-bin%/deploy-db
-@rem call %dir-bin%/build-swagger
+call %dir-bin%/deploy-db
+call %dir-bin%/build-swagger
 call %dir-bin%/build-web-api
 call %dir-bin%/build-web-api-client
 call %dir-bin%/build-web-api-client-checker
