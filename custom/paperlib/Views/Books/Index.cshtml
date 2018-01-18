@@ -9,6 +9,18 @@
 <table class="table">
 	<tr><th>id</th><th>name</th><th>owner id</th></tr>
 	@foreach (var book in Model) {
-		<tr><td>@book.Id</td><td>@book.Name</td><td>@book.OwnerId</td></tr>
+		<tr>
+			<td>@book.Id</td>
+			<td>
+				<a asp-area=""
+						asp-controller="Books"
+						asp-action="Profile"
+						asp-route-id="@book.Id"
+				>
+					@book.Name
+				</a>
+			</td>
+			<td>@book.OwnerId</td>
+		</tr>
 	}
 </table>
