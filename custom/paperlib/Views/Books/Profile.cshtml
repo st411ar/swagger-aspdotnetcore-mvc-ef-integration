@@ -1,0 +1,15 @@
+﻿@model IO.Swagger.Model.Book
+
+@{
+    ViewData["Title"] = "Book profile page";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+@{
+	if (Model != null) {
+		<p>Book id: @Model.Id</p>
+		<p>Book name: @Model.Name</p>
+		<p>Book owner id: @Model.OwnerId</p>
+	}
+}
