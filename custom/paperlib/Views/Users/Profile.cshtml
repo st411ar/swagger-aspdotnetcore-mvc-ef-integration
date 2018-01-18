@@ -1,0 +1,14 @@
+﻿@model IO.Swagger.Model.User
+
+@{
+    ViewData["Title"] = "User profile page";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+@{
+	if (Model != null) {
+		<p>User id: @Model.Id</p>
+		<p>User name: @Model.Name</p>
+	}
+}

@@ -21,6 +21,22 @@ namespace paperlib.Controllers
             return View(usersApi.GetUsers());
         }
 
+        public IActionResult Profile(int id = 0)
+        {
+            User user = null;
+            string message = "There is no user with such id";
+
+            if (id > 0) {
+                user = usersApi.GetUser(id);
+                if (user != null) {
+                    message = $"User {user.Name} profile page";
+                }
+            }
+
+            ViewData["Message"] = message;
+            return View(user);
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
