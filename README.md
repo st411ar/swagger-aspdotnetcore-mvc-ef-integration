@@ -34,15 +34,15 @@ git clone https://github.com/st411ar/swagger-aspdotnetcore-mvc-ef-integration.gi
 cd swagger-aspdotnetcore-mvc-ef-integration
 setup
 ```
-## run web-api
+## run web api server
 ```
 run-web-api
 ```
-## run web-api-client-checker
+## run web api client checker
 ```
 run-web-api-client-checker
 ```
-## run web application
+## run web application "Paper Library"
 ```
 run-web-app
 ```
