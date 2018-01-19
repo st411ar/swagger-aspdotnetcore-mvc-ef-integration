@@ -99,6 +99,7 @@ namespace IO.Swagger.Controllers
             var book = context.Books
                     .Include(b => b.Owner)
                     .SingleOrDefault(b => b.Id == id.Value);
+            book.Owner.Books = null;
             return new ObjectResult(book);
         }
 
