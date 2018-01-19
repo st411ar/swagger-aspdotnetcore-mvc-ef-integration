@@ -10,5 +10,29 @@
 	if (Model != null) {
 		<p>User id: @Model.Id</p>
 		<p>User name: @Model.Name</p>
+
+		if (Model.Books.Count > 0) {
+			<h4>Books</h4>
+			<table class="table">
+				<tr>
+					<td>book id</td>
+					<td>book name</td>
+				</tr>
+				@foreach (var book in Model.Books) {
+					<tr>
+						<td>@book.Id</td>
+						<td>
+							<a asp-area=""
+									asp-controller="Books"
+									asp-action="Profile"
+									asp-route-id="@book.Id"
+							>
+								@book.Name
+							</a>
+						</td>
+					</tr>
+				}
+			</table>
+		}
 	}
 }
