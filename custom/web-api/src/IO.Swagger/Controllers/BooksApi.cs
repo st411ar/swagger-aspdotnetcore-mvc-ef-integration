@@ -25,6 +25,7 @@ using IO.Swagger.Attributes;
 using IO.Swagger.Models;
 
 using IO.Swagger.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace IO.Swagger.Controllers
 { 
@@ -112,8 +113,10 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 200, type: typeof(List<Book>), description: "OK")]
         public virtual IActionResult GetBooks()
         { 
-            context.Users.ToList();
-            return new ObjectResult(context.Books.ToList());
+            List<Book> books = context.Books
+                    .Include(b => b.Owner)
+                    .ToList();
+            return new ObjectResult(books);
         }
 
         /// <summary>
