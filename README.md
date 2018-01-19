@@ -1,5 +1,5 @@
 # swagger-aspdotnetcore-mvc-ef-integration
-Paper Library demonstrates integration of **swagger** with **asp.net core** + **mvc** + **ef**
+Web application "Paper Library" demonstrates integration of **swagger** with **asp.net core** + **mvc** + **ef**
 ## content
 1. swagger codegen
 1. web api server
