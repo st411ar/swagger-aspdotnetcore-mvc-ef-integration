@@ -117,6 +117,9 @@ namespace IO.Swagger.Controllers
             List<Book> books = context.Books
                     .Include(b => b.Owner)
                     .ToList();
+            foreach (Book book in books) {
+                book.Owner.Books = null;
+            }
             return new ObjectResult(books);
         }
 
