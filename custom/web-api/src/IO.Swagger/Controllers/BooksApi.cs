@@ -96,8 +96,9 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 200, type: typeof(Book), description: "OK")]
         public virtual IActionResult GetBook([FromRoute][Required]int? id)
         { 
-            context.Users.ToList();
-            var book = context.Books.Find(id.Value);
+            var book = context.Books
+                    .Include(b => b.Owner)
+                    .SingleOrDefault(b => b.Id == id.Value);
             return new ObjectResult(book);
         }
 
