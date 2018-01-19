@@ -11,5 +11,14 @@
 		<p>Book id: @Model.Id</p>
 		<p>Book name: @Model.Name</p>
 		<p>Book owner id: @Model.OwnerId</p>
+		<p>Book owner:
+			<a asp-area=""
+					asp-controller="Users"
+					asp-action="Profile"
+					asp-route-id="@Model.Owner.Id"
+			>
+				@Model.Owner.Name
+			</a>
+		</p>
 	}
 }
