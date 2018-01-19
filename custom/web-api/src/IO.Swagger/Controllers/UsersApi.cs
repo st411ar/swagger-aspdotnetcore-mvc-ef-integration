@@ -25,6 +25,7 @@ using IO.Swagger.Attributes;
 using IO.Swagger.Models;
 
 using IO.Swagger.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace IO.Swagger.Controllers
 { 
@@ -93,7 +94,12 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 200, type: typeof(User), description: "OK")]
         public virtual IActionResult GetUser([FromRoute][Required]int? id)
         { 
-            var user = context.Users.Find(id.Value);
+            User user = context.Users
+                    .Include(u => u.Books)
+                    .SingleOrDefault(u => u.Id == id.Value);
+            foreach (Book book in user.Books) {
+                book.Owner = null;
+            }
             return new ObjectResult(user);
         }
 
