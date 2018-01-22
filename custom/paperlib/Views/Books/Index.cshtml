@@ -12,6 +12,7 @@
 		<th>name</th>
 		<th>owner id</th>
 		<th>owner</th>
+		<th>reader id</th>
 	</tr>
 	@foreach (var book in Model) {
 		<tr>
@@ -35,6 +36,7 @@
 					@book.Owner.Name
 				</a>
 			</td>
+			<td>@book.ReaderId</td>
 		</tr>
 	}
 </table>
