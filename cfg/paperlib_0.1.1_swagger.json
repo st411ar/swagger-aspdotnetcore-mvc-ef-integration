@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "0.1.0",
+    "version" : "0.1.1",
     "title" : "Paper Library Web API",
     "description" : "Paper Library Web API demonstrates integration of swagger with asp.net core + mvc + entity framework"
   },
@@ -271,6 +271,9 @@
         },
         "owner" : {
           "$ref" : "#/definitions/user"
+        },
+        "readerId" : {
+          "type" : "integer"
         }
       }
     }
