@@ -13,6 +13,7 @@
 		<th>owner id</th>
 		<th>owner</th>
 		<th>reader id</th>
+		<th>reader</th>
 	</tr>
 	@foreach (var book in Model) {
 		<tr>
@@ -37,6 +38,17 @@
 				</a>
 			</td>
 			<td>@book.ReaderId</td>
+			<td>
+				@if (book.Reader != null) {
+					<a asp-area=""
+							asp-controller="Users"
+							asp-action="Profile"
+							asp-route-id="@book.Reader.Id"
+					>
+						@book.Reader.Name
+					</a>
+				}
+			</td>
 		</tr>
 	}
 </table>

@@ -21,5 +21,16 @@
 			</a>
 		</p>
 		<p>Book reader id: @Model.ReaderId</p>
+		<p>Book reader:
+			@if (Model.Reader != null) {
+				<a asp-area=""
+						asp-controller="Users"
+						asp-action="Profile"
+						asp-route-id="@Model.Reader.Id"
+				>
+					@Model.Reader.Name
+				</a>
+			}
+		</p>
 	}
 }
