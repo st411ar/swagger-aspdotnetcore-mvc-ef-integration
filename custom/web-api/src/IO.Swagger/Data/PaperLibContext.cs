@@ -13,6 +13,10 @@ namespace IO.Swagger.Data {
 			modelBuilder.Entity<Book>()
 					.HasOne(b => b.Owner)
 					.WithMany(u => u.Books);
+
+			modelBuilder.Entity<Book>()
+					.HasOne(b => b.Reader)
+					.WithMany(u => u.RentedBooks);
 		}
 	}
 }

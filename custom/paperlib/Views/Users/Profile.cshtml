@@ -12,13 +12,46 @@
 		<p>User name: @Model.Name</p>
 
 		if (Model.Books.Count > 0) {
-			<h4>Books</h4>
+			<h4>Own Books</h4>
 			<table class="table">
 				<tr>
-					<td>book id</td>
-					<td>book name</td>
+					<th>book id</th>
+					<th>book name</th>
+					<th>availability</th>
 				</tr>
 				@foreach (var book in Model.Books) {
+					<tr>
+						<td>@book.Id</td>
+						<td>
+							<a asp-area=""
+									asp-controller="Books"
+									asp-action="Profile"
+									asp-route-id="@book.Id"
+							>
+								@book.Name
+							</a>
+						</td>
+						@if (book.ReaderId == null) {
+							<td>
+								<span class="label label-success">available<span>
+							</td>
+						} else {
+							<td>
+								<span class="label label-danger">busy<span>
+							</td>
+						}
+					</tr>
+				}
+			</table>
+		}
+		if (Model.RentedBooks.Count > 0) {
+			<h4>Rented Books</h4>
+			<table class="table">
+				<tr>
+					<th>book id</th>
+					<th>book name</th>
+				</tr>
+				@foreach (var book in Model.RentedBooks) {
 					<tr>
 						<td>@book.Id</td>
 						<td>
