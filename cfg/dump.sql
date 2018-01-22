@@ -14,6 +14,19 @@ CREATE DATABASE paperlib
 USE paperlib;
 
 -- ---
+-- Table 'roles'
+-- Roles allow users to make different kind of operations
+-- ---
+
+DROP TABLE IF EXISTS roles;
+    
+CREATE TABLE roles (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(25) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE = INNODB;
+
+-- ---
 -- Table 'users'
 -- Users may get paper books for a period
 -- ---
@@ -23,12 +36,14 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
-  PRIMARY KEY (id)
+  roleId INT NOT NULL DEFAULT 3,
+  PRIMARY KEY (id),
+  FOREIGN KEY (roleId) REFERENCES roles(id)
 ) ENGINE = INNODB;
 
 -- ---
--- Table 'users'
--- Users may get paper books for a period
+-- Table 'books'
+-- Books may be owned and may be rented by the users
 -- ---
 
 DROP TABLE IF EXISTS books;
@@ -47,9 +62,14 @@ CREATE TABLE books (
 -- Test Data
 -- ---
 
-INSERT INTO users (name) VALUES ('Екатерина Басюк');
+INSERT INTO roles (name) VALUES ('administrator');
+INSERT INTO roles (name) VALUES ('moderator');
+INSERT INTO roles (name) VALUES ('reader');
+INSERT INTO roles (name) VALUES ('guest');
+
+INSERT INTO users (name, roleId) VALUES ('Екатерина Басюк', 2);
 INSERT INTO users (name) VALUES ('Алексей Киселёв');
-INSERT INTO users (name) VALUES ('Виталий Киселёв');
+INSERT INTO users (name, roleId) VALUES ('Виталий Киселёв', 1);
 INSERT INTO users (name) VALUES ('Татьяна Ковальчук');
 INSERT INTO users (name) VALUES ('Алексей Пташник');
 INSERT INTO users (name) VALUES ('Артём Терехович');
