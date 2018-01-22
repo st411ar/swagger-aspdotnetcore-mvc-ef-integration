@@ -12,7 +12,7 @@ set mysql-dump-path=%dir-cfg%/dump.sql
 
 :: web-api
 set swagger-codegen-cli-jar=swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
-set swagger-descriptor-path=%dir-cfg%/paperlib_0.1.3_swagger.json
+set swagger-descriptor-path=%dir-cfg%/paperlib_0.2.0_swagger.json
 set web-api-name=web-api
 set src=src/IO.Swagger
 
