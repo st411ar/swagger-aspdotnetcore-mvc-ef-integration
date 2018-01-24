@@ -14,7 +14,7 @@
 	</p>
 
 	<p>Reader:
-		@if (Model.Reader != null) {
+		@if (Model.ReaderId.HasValue) {
 			<a asp-area=""
 					asp-controller="Users"
 					asp-action="Profile"

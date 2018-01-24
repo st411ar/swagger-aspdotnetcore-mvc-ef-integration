@@ -31,10 +31,11 @@ namespace paperlib.Controllers
         public IActionResult Return(int id)
         {
             Book book = booksApi.GetBook(id);
-            if (book != null) {
-                if (book.ReaderId == HttpContext.Session.GetInt32("userId")) {
-                    booksApi.ReturnBook(id);
-                }
+            if (book != null
+				&& book.ReaderId.HasValue
+				&& book.ReaderId == HttpContext.Session.GetInt32("userId")
+            ) {
+                booksApi.ReturnBook(id);
             }
             putSessionToViewData();
             return RedirectToAction("Profile", "Books", new {id = id});
