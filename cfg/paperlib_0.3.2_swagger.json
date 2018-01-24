@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "0.3.1",
+    "version" : "0.3.2",
     "title" : "Paper Library Web API",
     "description" : "Paper Library Web API demonstrates integration of swagger with asp.net core + mvc + entity framework"
   },
@@ -223,6 +223,25 @@
         "summary" : "Delete a book",
         "description" : "Operation for deletting a book by its id",
         "operationId" : "deleteBook",
+        "parameters" : [ {
+          "$ref" : "#/parameters/bookId"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/books/{id}/return" : {
+      "put" : {
+        "tags" : [ "books" ],
+        "summary" : "Return a book",
+        "description" : "Operation for returning a book to an owner",
+        "operationId" : "returnBook",
         "parameters" : [ {
           "$ref" : "#/parameters/bookId"
         } ],
