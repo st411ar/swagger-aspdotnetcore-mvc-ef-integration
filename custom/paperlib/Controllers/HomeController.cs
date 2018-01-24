@@ -9,7 +9,7 @@ using paperlib.Models;
 
 namespace paperlib.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : SessionController
     {
         public IActionResult Index()
         {
@@ -29,15 +29,6 @@ namespace paperlib.Controllers
             ViewData["Message"] = "Your contact page.";
            	putSessionToViewData();
             return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        private void putSessionToViewData() {
-       		ViewData["userId"] = HttpContext.Session.GetInt32("userId");
         }
     }
 }
