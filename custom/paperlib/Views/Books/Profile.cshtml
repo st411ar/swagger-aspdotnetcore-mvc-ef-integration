@@ -2,6 +2,7 @@
 
 @if (Model != null) {
 	<h2>@Model.Name</h2>
+
 	<p>Owner:
 		<a asp-area=""
 				asp-controller="Users"
@@ -11,6 +12,7 @@
 			@Model.Owner.Name
 		</a>
 	</p>
+
 	<p>Reader:
 		@if (Model.Reader != null) {
 			<a asp-area=""
@@ -20,12 +22,16 @@
 			>
 				@Model.Reader.Name
 			</a>
-		}
-		else
-		{
+		} else {
 			<span class="label label-success">free</span>
 		}
 	</p>
+
+	@if (Model.ReaderId == (int?)ViewData["userId"]) {
+		<form role="form" asp-area="" asp-controller="Books" asp-action="Return" asp-route-id="@Model.Id">
+	        <button class="btn btn-success" type="submit">return book</button>
+		</form>
+	}
 } else {
 	<h2>Such book doesn't exist</h2>	
 }
