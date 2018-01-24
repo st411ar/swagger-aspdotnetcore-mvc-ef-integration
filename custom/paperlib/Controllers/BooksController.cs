@@ -31,9 +31,8 @@ namespace paperlib.Controllers
         public IActionResult Return(int id)
         {
             Book book = booksApi.GetBook(id);
-            if (book != null && book.Reader != null) {
-                int? userId = HttpContext.Session.GetInt32("userId");
-                if (userId != null && book.Reader.Id == userId.Value) {
+            if (book != null) {
+                if (book.ReaderId == HttpContext.Session.GetInt32("userId")) {
                     booksApi.ReturnBook(id);
                 }
             }
