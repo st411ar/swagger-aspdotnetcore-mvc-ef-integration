@@ -12,7 +12,7 @@ using IO.Swagger.Model;
 
 namespace paperlib.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : SessionController
     {
     	private static UsersApi usersApi = new UsersApi();
 
@@ -26,15 +26,6 @@ namespace paperlib.Controllers
         {
            	putSessionToViewData();
             return View(usersApi.GetUser(id));
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        private void putSessionToViewData() {
-       		ViewData["userId"] = HttpContext.Session.GetInt32("userId");
         }
     }
 }

@@ -12,17 +12,15 @@ using IO.Swagger.Model;
 
 namespace paperlib.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : SessionController
     {
     	private static AuthApi authApi = new AuthApi();
 
         public IActionResult LogIn(int userId, string userPassword) {
-
-			bool isPasswordPassed = !String.IsNullOrEmpty(userPassword);
-			if (isPasswordPassed) {
-				bool isSignedIn = authApi.SignIn(userId, userPassword).Value;
-				if (isSignedIn) {
-		           	HttpContext.Session.SetInt32("userId", userId);
+			if (!String.IsNullOrEmpty(userPassword)) {
+				User user = authApi.SignIn(userId, userPassword);
+				if (user != null) {
+					setUserSession(user.Id.Value, user.RoleId.Value);
 					return RedirectToAction("Profile", "Users", new {id = userId});
 				} else {
 		            ViewData["Message"] = "user id or password is incorrect";
@@ -34,18 +32,9 @@ namespace paperlib.Controllers
         }
 
         public IActionResult LogOut() {
-           	HttpContext.Session.Clear();
+           	clearSession();
            	putSessionToViewData();
 			return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        private void putSessionToViewData() {
-       		ViewData["userId"] = HttpContext.Session.GetInt32("userId");
         }
     }
 }
