@@ -24,11 +24,16 @@
 			</a>
 			@if (Model.ReaderId == (int?)ViewData["userId"]) {
 				<form role="form" asp-area="" asp-controller="Books" asp-action="Return" asp-route-id="@Model.Id">
-			        <button class="btn btn-success" type="submit">return book</button>
+					<button class="btn btn-success" type="submit">return book</button>
 				</form>
 			}
 		} else {
 			<span class="label label-success">free</span>
+			@if ( ((int?)ViewData["userId"]).HasValue && Model.OwnerId != (int?)ViewData["userId"]) {
+				<form role="form" asp-area="" asp-controller="Books" asp-action="Order" asp-route-id="@Model.Id">
+					<button class="btn btn-primary" type="submit">order book</button>
+				</form>
+			}
 		}
 	</p>
 
