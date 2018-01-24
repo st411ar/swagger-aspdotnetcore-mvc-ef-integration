@@ -28,6 +28,19 @@ namespace paperlib.Controllers
             return View(booksApi.GetBook(id));
         }
 
+        public IActionResult Return(int id)
+        {
+            Book book = booksApi.GetBook(id);
+            if (book != null
+				&& book.ReaderId.HasValue
+				&& book.ReaderId == HttpContext.Session.GetInt32("userId")
+            ) {
+                booksApi.ReturnBook(id);
+            }
+            putSessionToViewData();
+            return RedirectToAction("Profile", "Books", new {id = id});
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
