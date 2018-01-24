@@ -1,74 +1,57 @@
 ﻿@model IO.Swagger.Model.User
 
-@{
-    ViewData["Title"] = "User profile page";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+@if (Model != null) {
+	<h2>@Model.Name</h2>
+	<h3>@Model.Role.Name</h3>
 
-@{
-	if (Model != null) {
-		<p>User id: @Model.Id</p>
-		<p>User name: @Model.Name</p>
-		<p>User RoleId: @Model.RoleId</p>
-		<p>User Role.Id: @Model.Role.Id</p>
-		<p>User Role.Name: @Model.Role.Name</p>
-
-		if (Model.Books.Count > 0) {
-			<h4>Own Books</h4>
-			<table class="table">
+	if (Model.Books.Count > 0) {
+		<hr />
+		<h4>Own Books</h4>
+		<table class="table">
+			@foreach (var book in Model.Books) {
 				<tr>
-					<th>book id</th>
-					<th>book name</th>
-					<th>availability</th>
-				</tr>
-				@foreach (var book in Model.Books) {
-					<tr>
-						<td>@book.Id</td>
+					<td>
+						<a asp-area=""
+								asp-controller="Books"
+								asp-action="Profile"
+								asp-route-id="@book.Id"
+						>
+							@book.Name
+						</a>
+					</td>
+					@if (book.ReaderId == null) {
 						<td>
-							<a asp-area=""
-									asp-controller="Books"
-									asp-action="Profile"
-									asp-route-id="@book.Id"
-							>
-								@book.Name
-							</a>
+							<span class="label label-success">free</span>
 						</td>
-						@if (book.ReaderId == null) {
-							<td>
-								<span class="label label-success">available<span>
-							</td>
-						} else {
-							<td>
-								<span class="label label-danger">busy<span>
-							</td>
-						}
-					</tr>
-				}
-			</table>
-		}
-		if (Model.RentedBooks.Count > 0) {
-			<h4>Rented Books</h4>
-			<table class="table">
-				<tr>
-					<th>book id</th>
-					<th>book name</th>
-				</tr>
-				@foreach (var book in Model.RentedBooks) {
-					<tr>
-						<td>@book.Id</td>
+					} else {
 						<td>
-							<a asp-area=""
-									asp-controller="Books"
-									asp-action="Profile"
-									asp-route-id="@book.Id"
-							>
-								@book.Name
-							</a>
+							<span class="label label-danger">busy</span>
 						</td>
-					</tr>
-				}
-			</table>
-		}
+					}
+				</tr>
+			}
+		</table>
 	}
+
+	if (Model.RentedBooks.Count > 0) {
+		<hr />
+		<h4>Rented Books</h4>
+		<table class="table">
+			@foreach (var book in Model.RentedBooks) {
+				<tr>
+					<td>
+						<a asp-area=""
+								asp-controller="Books"
+								asp-action="Profile"
+								asp-route-id="@book.Id"
+						>
+							@book.Name
+						</a>
+					</td>
+				</tr>
+			}
+		</table>
+	}
+} else {
+	<h2>Such user doesn't exist</h2>
 }

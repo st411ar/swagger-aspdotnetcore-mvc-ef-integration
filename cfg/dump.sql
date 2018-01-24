@@ -36,6 +36,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
+  password VARCHAR(64) NOT NULL,
   roleId INT NOT NULL DEFAULT 3,
   PRIMARY KEY (id),
   FOREIGN KEY (roleId) REFERENCES roles(id)
@@ -67,12 +68,12 @@ INSERT INTO roles (name) VALUES ('moderator');
 INSERT INTO roles (name) VALUES ('reader');
 INSERT INTO roles (name) VALUES ('guest');
 
-INSERT INTO users (name, roleId) VALUES ('Екатерина Басюк', 2);
-INSERT INTO users (name) VALUES ('Алексей Киселёв');
-INSERT INTO users (name, roleId) VALUES ('Виталий Киселёв', 1);
-INSERT INTO users (name) VALUES ('Татьяна Ковальчук');
-INSERT INTO users (name) VALUES ('Алексей Пташник');
-INSERT INTO users (name) VALUES ('Артём Терехович');
+INSERT INTO users (name, password, roleId) VALUES ('Екатерина Басюк', 'userpass1', 2);
+INSERT INTO users (name, password) VALUES ('Алексей Киселёв', 'userpass2');
+INSERT INTO users (name, password, roleId) VALUES ('Виталий Киселёв', 'userpass3', 1);
+INSERT INTO users (name, password) VALUES ('Татьяна Ковальчук', 'userpass4');
+INSERT INTO users (name, password) VALUES ('Алексей Пташник', 'userpass5');
+INSERT INTO users (name, password) VALUES ('Артём Терехович', 'userpass6');
 
 INSERT INTO books (name, ownerId, readerId) VALUES ('Экстремальное программирование. TDD', 3, 1);
 INSERT INTO books (name, ownerId, readerId) VALUES ('Совершенный код', 3, 4);

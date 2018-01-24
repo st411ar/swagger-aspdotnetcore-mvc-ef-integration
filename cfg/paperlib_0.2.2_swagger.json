@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "0.2.1",
+    "version" : "0.2.2",
     "title" : "Paper Library Web API",
     "description" : "Paper Library Web API demonstrates integration of swagger with asp.net core + mvc + entity framework"
   },
@@ -11,6 +11,9 @@
   "consumes" : [ "application/json" ],
   "produces" : [ "application/json" ],
   "tags" : [ {
+    "name" : "auth",
+    "description" : "Operations for authentication and authorization"
+  }, {
     "name" : "users",
     "description" : "Operations with users"
   }, {
@@ -18,6 +21,33 @@
     "description" : "Operations with books"
   } ],
   "paths" : {
+    "/signin" : {
+      "get" : {
+        "tags" : [ "auth" ],
+        "summary" : "Sign In",
+        "description" : "Operation for signing in",
+        "operationId" : "signIn",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "A string represents user id",
+          "type" : "integer"
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "description" : "A string represents user password",
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    },
     "/users" : {
       "get" : {
         "tags" : [ "users" ],

@@ -1,0 +1,11 @@
+﻿<div class="row">
+  <div class="col-md-4">
+      <form class="form-signin" role="form" asp-area="" asp-controller="Auth" asp-action="LogIn">
+        <h3 class="form-signin-heading">Please, log in</h3>
+        <p class="text-danger">@ViewData["Message"]</p>
+        <input name="userId" type="text" class="form-control" placeholder="User Id" required autofocus>
+        <input name="userPassword" type="password" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+      </form>
+  </div>
+</div>

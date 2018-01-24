@@ -36,6 +36,14 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                	@if (ViewData["userId"] != null) {
+	                    <li><a asp-area="" asp-controller="Users" asp-action="Profile" asp-route-id="@ViewData["userId"]"><span class="glyphicon glyphicon-user"></span></a></li>
+	                    <li><a asp-area="" asp-controller="Auth" asp-action="LogOut" >Log Out</a></li>
+                	} else {
+	                    <li><a asp-area="" asp-controller="Auth" asp-action="LogIn">Log In</a></li>
+                	}
+                </ul>
             </div>
         </div>
     </nav>
