@@ -8,6 +8,29 @@
 @if (Model != null) {
 	<h2>@Model.Name</h2>
 
+	@if ( !Model.ReaderId.HasValue 
+			&& userId.HasValue 
+			&& (userRoleId.HasValue 
+					&& (userRoleId.Value == 1 || userRoleId.Value == 2) 
+					|| Model.OwnerId == userId
+			)
+	) {
+		<form class="form-horizontal" role="form" asp-area="" asp-controller="Books" asp-action="Edit" asp-route-id="@Model.Id">
+			<div class="form-group">
+				<label for="bookName" class="control-label col-md-2">change book name</label>
+				<div class="col-md-10">
+					<input type="text" id="bookName" name="bookName" class="form-control" value="@Model.Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-1 col-md-1">
+					<button class="btn btn-warning" type="submit">save</button>
+				</div>
+			</div>
+		</form>
+		<hr />
+	}
+
 	<p>Owner:
 		<a asp-area=""
 				asp-controller="Users"
