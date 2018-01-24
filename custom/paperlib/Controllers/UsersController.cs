@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using paperlib.Models;
 
@@ -17,29 +18,23 @@ namespace paperlib.Controllers
 
         public IActionResult Index()
         {
-            ViewData["Message"] = "List of all users";
+           	putSessionToViewData();
             return View(usersApi.GetUsers());
         }
 
-        public IActionResult Profile(int id = 0)
+        public IActionResult Profile(int id)
         {
-            User user = null;
-            string message = "There is no user with such id";
-
-            if (id > 0) {
-                user = usersApi.GetUser(id);
-                if (user != null) {
-                    message = $"User {user.Name} profile page";
-                }
-            }
-
-            ViewData["Message"] = message;
-            return View(user);
+           	putSessionToViewData();
+            return View(usersApi.GetUser(id));
         }
 
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private void putSessionToViewData() {
+       		ViewData["userId"] = HttpContext.Session.GetInt32("userId");
         }
     }
 }

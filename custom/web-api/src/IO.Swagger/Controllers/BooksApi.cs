@@ -100,11 +100,13 @@ namespace IO.Swagger.Controllers
                     .Include(b => b.Owner)
                     .Include(b => b.Reader)
                     .SingleOrDefault(b => b.Id == id.Value);
-            book.Owner.Books = null;
-            book.Owner.RentedBooks = null;
-            if (book.Reader != null) {
-                book.Reader.Books = null;
-                book.Reader.RentedBooks = null;
+            if (book != null) {
+                book.Owner.Books = null;
+                book.Owner.RentedBooks = null;
+                if (book.Reader != null) {
+                    book.Reader.Books = null;
+                    book.Reader.RentedBooks = null;
+                }
             }
             return new ObjectResult(book);
         }

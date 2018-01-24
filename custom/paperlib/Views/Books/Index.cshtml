@@ -1,23 +1,14 @@
 ﻿@model IEnumerable<IO.Swagger.Model.Book>
 
-@{
-    ViewData["Title"] = "Books";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
-
+<h2>Books</h2>
 <table class="table">
 	<tr>
-		<th>id</th>
-		<th>name</th>
-		<th>owner id</th>
+		<th>book</th>
 		<th>owner</th>
-		<th>reader id</th>
 		<th>reader</th>
 	</tr>
 	@foreach (var book in Model) {
 		<tr>
-			<td>@book.Id</td>
 			<td>
 				<a asp-area=""
 						asp-controller="Books"
@@ -27,7 +18,6 @@
 					@book.Name
 				</a>
 			</td>
-			<td>@book.OwnerId</td>
 			<td>
 				<a asp-area=""
 						asp-controller="Users"
@@ -37,7 +27,6 @@
 					@book.Owner.Name
 				</a>
 			</td>
-			<td>@book.ReaderId</td>
 			<td>
 				@if (book.Reader != null) {
 					<a asp-area=""

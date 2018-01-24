@@ -1,36 +1,31 @@
 ﻿@model IO.Swagger.Model.Book
 
-@{
-    ViewData["Title"] = "Book profile page";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
-
-@{
-	if (Model != null) {
-		<p>Book id: @Model.Id</p>
-		<p>Book name: @Model.Name</p>
-		<p>Book owner id: @Model.OwnerId</p>
-		<p>Book owner:
+@if (Model != null) {
+	<h2>@Model.Name</h2>
+	<p>Owner:
+		<a asp-area=""
+				asp-controller="Users"
+				asp-action="Profile"
+				asp-route-id="@Model.Owner.Id"
+		>
+			@Model.Owner.Name
+		</a>
+	</p>
+	<p>Reader:
+		@if (Model.Reader != null) {
 			<a asp-area=""
 					asp-controller="Users"
 					asp-action="Profile"
-					asp-route-id="@Model.Owner.Id"
+					asp-route-id="@Model.Reader.Id"
 			>
-				@Model.Owner.Name
+				@Model.Reader.Name
 			</a>
-		</p>
-		<p>Book reader id: @Model.ReaderId</p>
-		<p>Book reader:
-			@if (Model.Reader != null) {
-				<a asp-area=""
-						asp-controller="Users"
-						asp-action="Profile"
-						asp-route-id="@Model.Reader.Id"
-				>
-					@Model.Reader.Name
-				</a>
-			}
-		</p>
-	}
+		}
+		else
+		{
+			<span class="label label-success">free</span>
+		}
+	</p>
+} else {
+	<h2>Such book doesn't exist</h2>	
 }

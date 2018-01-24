@@ -1,22 +1,9 @@
 ﻿@model IEnumerable<IO.Swagger.Model.User>
 
-@{
-    ViewData["Title"] = "Users";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
-
+<h2>Users</h2>
 <table class="table">
-	<tr>
-		<th>id</th>
-		<th>name</th>
-		<th>RoleId</th>
-		<th>Role.Id</th>
-		<th>Role.Name</th>
-	</tr>
 	@foreach (var user in Model) {
 		<tr>
-			<td>@user.Id</td>
 			<td>
 				<a asp-area=""
 						asp-controller="Users"
@@ -26,8 +13,6 @@
 					@user.Name
 				</a>
 			</td>
-			<td>@user.RoleId</td>
-			<td>@user.Role.Id</td>
 			<td>@user.Role.Name</td>
 		</tr>
 	}

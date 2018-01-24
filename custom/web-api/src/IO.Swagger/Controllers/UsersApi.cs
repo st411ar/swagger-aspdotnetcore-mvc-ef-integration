@@ -99,13 +99,15 @@ namespace IO.Swagger.Controllers
                     .Include(u => u.Books)
                     .Include(u => u.RentedBooks)
                     .SingleOrDefault(u => u.Id == id.Value);
-            foreach (Book book in user.Books) {
-                book.Owner = null;
-                book.Reader = null;
-            }
-            foreach (Book book in user.RentedBooks) {
-                book.Owner = null;
-                book.Reader = null;
+            if (user != null) {
+	            foreach (Book book in user.Books) {
+	                book.Owner = null;
+	                book.Reader = null;
+	            }
+	            foreach (Book book in user.RentedBooks) {
+	                book.Owner = null;
+	                book.Reader = null;
+	            }
             }
             return new ObjectResult(user);
         }
