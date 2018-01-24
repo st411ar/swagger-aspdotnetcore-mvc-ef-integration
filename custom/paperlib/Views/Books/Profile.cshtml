@@ -22,16 +22,16 @@
 			>
 				@Model.Reader.Name
 			</a>
+			@if (Model.ReaderId == (int?)ViewData["userId"]) {
+				<form role="form" asp-area="" asp-controller="Books" asp-action="Return" asp-route-id="@Model.Id">
+			        <button class="btn btn-success" type="submit">return book</button>
+				</form>
+			}
 		} else {
 			<span class="label label-success">free</span>
 		}
 	</p>
 
-	@if (Model.ReaderId == (int?)ViewData["userId"]) {
-		<form role="form" asp-area="" asp-controller="Books" asp-action="Return" asp-route-id="@Model.Id">
-	        <button class="btn btn-success" type="submit">return book</button>
-		</form>
-	}
 } else {
 	<h2>Such book doesn't exist</h2>	
 }
