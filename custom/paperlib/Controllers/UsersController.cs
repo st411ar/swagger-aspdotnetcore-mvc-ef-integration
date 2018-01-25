@@ -30,6 +30,16 @@ namespace paperlib.Controllers {
             return RedirectToAction("Index", "Users");
         }
 
+        public IActionResult Edit(int id, string userName) {
+            if (id > 0 && !String.IsNullOrEmpty(userName)) {
+                int? userId = getSessionUserId();
+                if (userId.HasValue && userId.Value == id) {
+                    usersApi.UpdateUser(id, userName);
+                }
+            }
+            return RedirectToAction("Profile", "Users", new {id = id});
+        }
+
         public IActionResult Index() {
             putSessionToViewData();
             return View(usersApi.GetUsers());

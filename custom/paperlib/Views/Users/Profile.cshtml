@@ -9,6 +9,22 @@
 	<h2>@Model.Name</h2>
 	<h3>@Model.Role.Name</h3>
 
+	@if (Model.Id == userId) {
+		<form class="form-horizontal" role="form" asp-area="" asp-controller="Users" asp-action="Edit" asp-route-id="@Model.Id">
+			<div class="form-group">
+				<label for="userName" class="control-label col-md-2">change user name</label>
+				<div class="col-md-10">
+					<input type="text" id="userName" name="userName" class="form-control" value="@Model.Name" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-1 col-md-1">
+					<button class="btn btn-warning" type="submit">save</button>
+				</div>
+			</div>
+		</form>
+	}
+
 	@if (
 			Model.Books.Count == 0 && Model.RentedBooks.Count == 0
 			&& (
