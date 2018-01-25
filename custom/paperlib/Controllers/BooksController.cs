@@ -14,6 +14,17 @@ namespace paperlib.Controllers {
     public class BooksController : SessionController {
     	private static BooksApi booksApi = new BooksApi();
 
+        public IActionResult Create(String newBookName, int ownerId) {
+            if (!String.IsNullOrEmpty(newBookName) && ownerId > 0) {
+                int? userId = getSessionUserId();
+                if (userId.HasValue && userId.Value == ownerId) {
+                    booksApi.CreateBook(newBookName, ownerId);
+                }
+            }
+            putSessionToViewData();
+            return RedirectToAction("Profile", "Users", new {id = ownerId});
+        }
+
         public IActionResult Delete(int id) {
             if (id > 0) {
                 int? userId = getSessionUserId();
@@ -31,11 +42,6 @@ namespace paperlib.Controllers {
             return RedirectToAction("Index", "Books");
         }
 
-        public IActionResult Index() {
-           	putSessionToViewData();
-            return View(booksApi.GetBooks());
-        }
-
         public IActionResult Edit(int id, string bookName) {
             if (id > 0 && !String.IsNullOrEmpty(bookName)) {
                 int? userId = getSessionUserId();
@@ -51,6 +57,11 @@ namespace paperlib.Controllers {
             }
             putSessionToViewData();
             return RedirectToAction("Profile", "Books", new {id = id});
+        }
+
+        public IActionResult Index() {
+            putSessionToViewData();
+            return View(booksApi.GetBooks());
         }
 
         public IActionResult Order(int id) {
