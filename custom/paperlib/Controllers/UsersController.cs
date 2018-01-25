@@ -10,22 +10,39 @@ using paperlib.Models;
 using IO.Swagger.Api;
 using IO.Swagger.Model;
 
-namespace paperlib.Controllers
-{
-    public class UsersController : SessionController
-    {
+namespace paperlib.Controllers {
+    public class UsersController : SessionController {
     	private static UsersApi usersApi = new UsersApi();
 
-        public IActionResult Index()
-        {
-           	putSessionToViewData();
+        public IActionResult Delete(int id) {
+            if (id > 0) {
+                int? userId = getSessionUserId();
+                int? userRoleId = getSessionUserRoleId();
+                if (
+                        userRoleId.HasValue && userRoleId.Value == 1
+                        || userId.HasValue && userId.Value == id
+                ) {
+                    if (isDeletableUser(id)) {
+                        usersApi.DeleteUser(id);
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Users");
+        }
+
+        public IActionResult Index() {
+            putSessionToViewData();
             return View(usersApi.GetUsers());
         }
 
-        public IActionResult Profile(int id)
-        {
-           	putSessionToViewData();
+        public IActionResult Profile(int id) {
+            putSessionToViewData();
             return View(usersApi.GetUser(id));
+        }
+
+        private static bool isDeletableUser(int id) {
+            User user = usersApi.GetUser(id);
+            return user.Books.Count == 0 && user.RentedBooks.Count == 0;
         }
     }
 }

@@ -21,7 +21,6 @@ namespace paperlib.Controllers {
                     booksApi.CreateBook(newBookName, ownerId);
                 }
             }
-            putSessionToViewData();
             return RedirectToAction("Profile", "Users", new {id = ownerId});
         }
 
@@ -38,7 +37,6 @@ namespace paperlib.Controllers {
                     }
                 }
             }
-            putSessionToViewData();
             return RedirectToAction("Index", "Books");
         }
 
@@ -55,7 +53,6 @@ namespace paperlib.Controllers {
                     }
                 }
             }
-            putSessionToViewData();
             return RedirectToAction("Profile", "Books", new {id = id});
         }
 
@@ -75,7 +72,6 @@ namespace paperlib.Controllers {
 
                 }
             }
-            putSessionToViewData();
             return RedirectToAction("Profile", "Books", new {id = id});
         }
 
@@ -98,7 +94,6 @@ namespace paperlib.Controllers {
                     booksApi.ReturnBook(id);
                 }
             }
-            putSessionToViewData();
             return RedirectToAction("Profile", "Books", new {id = id});
         }
 

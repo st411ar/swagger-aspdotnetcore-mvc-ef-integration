@@ -2,11 +2,25 @@
 
 @{
 	int? userId = (int?)ViewData["userId"];
+	int? userRoleId = (int?)ViewData["userRoleId"];
 }
 
 @if (Model != null) {
 	<h2>@Model.Name</h2>
 	<h3>@Model.Role.Name</h3>
+
+	@if (
+			Model.Books.Count == 0 && Model.RentedBooks.Count == 0
+			&& (
+					userRoleId.HasValue && userRoleId.Value == 1
+					|| userId.HasValue && userId.Value == Model.Id
+			)
+	){
+		<form role="form" asp-area="" asp-controller="Users" asp-action="Delete" asp-route-id="@Model.Id">
+			<label>Delete (ban) the user</label>
+			<button class="btn btn-danger" type="submit">delete</button>
+		</form>
+	}
 
 	@if ( Model.Id == userId ) {
 		<hr />
