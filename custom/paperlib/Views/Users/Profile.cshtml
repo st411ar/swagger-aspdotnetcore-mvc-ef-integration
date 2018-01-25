@@ -1,8 +1,31 @@
 ﻿@model IO.Swagger.Model.User
 
+@{
+	int? userId = (int?)ViewData["userId"];
+}
+
 @if (Model != null) {
 	<h2>@Model.Name</h2>
 	<h3>@Model.Role.Name</h3>
+
+	@if ( Model.Id == userId ) {
+		<hr />
+		<h4>Create new book</h4>
+		<form class="form-horizontal" role="form" asp-area="" asp-controller="Books" asp-action="Create" >
+			<input type="hidden" id="ownerId" name="ownerId" value="@Model.Id">
+			<div class="form-group">
+				<label for="newBookName" class="control-label col-md-2">new book name</label>
+				<div class="col-md-10">
+					<input type="text" id="newBookName" name="newBookName" class="form-control" plaseholder="the name of the new book">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-1 col-md-1">
+					<button class="btn btn-success" type="submit">create</button>
+				</div>
+			</div>
+		</form>
+	}
 
 	if (Model.Books.Count > 0) {
 		<hr />
