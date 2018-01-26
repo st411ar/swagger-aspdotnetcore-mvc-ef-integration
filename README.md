@@ -46,3 +46,11 @@ run-web-api-client-checker
 ```
 run-web-app
 ```
+## next
+- add auth to api
+- move part of auth logic from app to api
+- change app auth to filter based
+- improve password security (hash, carefully with heap)
+- improve ui
+- create custom swagger library for asp.net core ef
+- remove redundant tabs and pages
