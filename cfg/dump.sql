@@ -36,7 +36,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
-  password VARCHAR(64) NOT NULL,
+  password VARCHAR(64) NOT NULL DEFAULT 'initialtemporarydefaultpasswordvalue',
   roleId INT NOT NULL DEFAULT 3,
   PRIMARY KEY (id),
   FOREIGN KEY (roleId) REFERENCES roles(id)
