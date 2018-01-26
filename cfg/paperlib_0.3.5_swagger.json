@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "0.3.4",
+    "version" : "0.3.5",
     "title" : "Paper Library Web API",
     "description" : "Paper Library Web API demonstrates integration of swagger with asp.net core + mvc + entity framework"
   },
@@ -73,12 +73,14 @@
         "operationId" : "createUser",
         "parameters" : [ {
           "$ref" : "#/parameters/userName"
+        }, {
+          "$ref" : "#/parameters/userPassword"
         } ],
         "responses" : {
           "200" : {
             "description" : "OK",
             "schema" : {
-              "type" : "boolean"
+              "type" : "integer"
             }
           }
         }
@@ -270,6 +272,12 @@
       "in" : "query",
       "name" : "name",
       "description" : "A string represents user name",
+      "type" : "string"
+    },
+    "userPassword" : {
+      "in" : "query",
+      "name" : "password",
+      "description" : "A string represents user password",
       "type" : "string"
     },
     "userRoleId" : {
