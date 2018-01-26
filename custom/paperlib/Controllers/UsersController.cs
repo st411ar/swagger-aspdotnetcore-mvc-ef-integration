@@ -34,7 +34,17 @@ namespace paperlib.Controllers {
             if (id > 0 && !String.IsNullOrEmpty(userName)) {
                 int? userId = getSessionUserId();
                 if (userId.HasValue && userId.Value == id) {
-                    usersApi.UpdateUser(id, userName);
+                    usersApi.UpdateUser(id, userName, null);
+                }
+            }
+            return RedirectToAction("Profile", "Users", new {id = id});
+        }
+
+        public IActionResult EditRole(int id, int roleId) {
+            if (id > 0 && 1 < roleId && roleId < 4) {
+                int? userRoleId = getSessionUserRoleId();
+                if (userRoleId.HasValue && userRoleId.Value == 1) {
+                    usersApi.UpdateUser(id, null, roleId);
                 }
             }
             return RedirectToAction("Profile", "Users", new {id = id});
