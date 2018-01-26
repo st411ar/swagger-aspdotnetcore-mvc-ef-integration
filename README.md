@@ -54,3 +54,6 @@ run-web-app
 - improve ui
 - create custom swagger library for asp.net core ef
 - remove redundant tabs and pages
+- remove some hardcode (e.g. ui user roles edit)
+- move part of views to view models
+- implements roles with help of enums
