@@ -1,0 +1,14 @@
+﻿<div class="row">
+  <div class="col-md-4">
+      <form class="form-signin" role="form" asp-area="" asp-controller="Users" asp-action="SignUp">
+        <h3 class="form-signin-heading">Please, choose name, password and sign up</h3>
+        <p class="text-danger">@ViewData["Message"]</p>
+        <input name="name" type="text" class="form-control" placeholder="Choose User Name" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="Choose Password" required>
+<!--
+        <input name="repassword" type="password" class="form-control" placeholder="Repeat choosen password" required>
+-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+      </form>
+  </div>
+</div>

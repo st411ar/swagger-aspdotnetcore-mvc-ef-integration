@@ -41,7 +41,8 @@
 	                    <li><a asp-area="" asp-controller="Users" asp-action="Profile" asp-route-id="@ViewData["userId"]"><span class="glyphicon glyphicon-user"></span></a></li>
 	                    <li><a asp-area="" asp-controller="Auth" asp-action="LogOut" >Log Out</a></li>
                 	} else {
-	                    <li><a asp-area="" asp-controller="Auth" asp-action="LogIn">Log In</a></li>
+                        <li><a asp-area="" asp-controller="Auth" asp-action="LogIn">Log In</a></li>
+                        <li><a asp-area="" asp-controller="Users" asp-action="SignUp">Sign Up</a></li>
                 	}
                 </ul>
             </div>

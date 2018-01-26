@@ -14,6 +14,22 @@ namespace paperlib.Controllers {
     public class UsersController : SessionController {
     	private static UsersApi usersApi = new UsersApi();
 
+        public IActionResult SignUp(string name, string password) {
+            if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(password)) {
+                int? userId = getSessionUserId();
+                if (!userId.HasValue) {
+                    int? createdUserId = usersApi.CreateUser(name, password);
+                    if (createdUserId.HasValue) {
+                        return RedirectToAction("LogIn", "Auth", new {userId = createdUserId.Value, userPassword = password});
+                    } else {
+                        ViewData["Message"] = "user creation has been failed";
+                    }
+                }
+            }
+            putSessionToViewData();
+            return View();
+        }
+
         public IActionResult Delete(int id) {
             if (id > 0) {
                 int? userId = getSessionUserId();
