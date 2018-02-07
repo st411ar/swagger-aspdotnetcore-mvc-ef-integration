@@ -15,6 +15,9 @@ Web application "Paper Library" demonstrates integration of **swagger** with **a
 1. maven
 1. .net core sdk 2.x
 1. mysql connector net
+1. nodejs (>= 6.9.0)
+1. npm (>= 3.0.0)
+1. angular cli
 ## validated
 - arch x86
 - windows 7 SP1
@@ -28,6 +31,9 @@ Web application "Paper Library" demonstrates integration of **swagger** with **a
 - maven 3.5.2
 - .net core sdk 2.1.4
 - mysql connector net 6.10.5
+- nodejs 8.9.4
+- npm 5.6.0
+- angular cli 1.6.7
 ## setup
 ```
 git clone https://github.com/st411ar/swagger-aspdotnetcore-mvc-ef-integration.git

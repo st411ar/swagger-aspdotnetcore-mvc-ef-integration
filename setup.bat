@@ -32,6 +32,7 @@ call %dir-bin%/build-web-api
 call %dir-bin%/build-web-api-client
 call %dir-bin%/build-web-api-client-checker
 call %dir-bin%/build-web-app
+call %dir-bin%/build-ng-web-app
 
 :: project have been built
 set end=%time%

@@ -3,4 +3,5 @@ web-api/
 web-api-client/
 web-api-client-checker/
 paperlib/
+paperlib-ng/
 !custom/*
