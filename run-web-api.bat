@@ -1,1 +1,1 @@
-dotnet run -p web-api/src/IO.Swagger/IO.Swagger.csproj --launch-profile web
+start cmd /k dotnet run -p web-api/src/IO.Swagger/IO.Swagger.csproj --launch-profile web
