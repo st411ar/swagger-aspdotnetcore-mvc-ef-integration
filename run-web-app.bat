@@ -1,1 +1,1 @@
-dotnet run -p paperlib
+start cmd /k dotnet run -p paperlib
