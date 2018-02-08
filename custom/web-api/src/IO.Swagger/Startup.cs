@@ -91,6 +91,14 @@ namespace IO.Swagger
                 });
 
             configureDbContext(services);
+
+            services.AddCors(options =>
+                options.AddPolicy("AllowAllPolicy", builder =>
+                    builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                )
+            );
         }
 
         /// <summary>
@@ -101,7 +109,9 @@ namespace IO.Swagger
         /// <param name="loggerFactory"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            // Cors MUST be used BEFORE Mvc
             app
+                .UseCors("AllowAllPolicy")
                 .UseMvc()
                 .UseDefaultFiles()
                 .UseStaticFiles()

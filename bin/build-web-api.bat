@@ -5,6 +5,7 @@ java -jar %swagger-codegen-cli-jar% generate ^
 		-l aspnetcore ^
 		-o %web-api-name%
 
+dotnet add %web-api-name%/%src% package Microsoft.AspNetCore.Cors
 dotnet add %web-api-name%/%src% package MySql.Data.EntityFrameworkCore
 xcopy custom\%web-api-name% %web-api-name% /S /I /Y
 cd %web-api-name%
